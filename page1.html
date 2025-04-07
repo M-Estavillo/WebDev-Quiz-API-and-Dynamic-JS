@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quizStyle.css">
+    <title>Quiz</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Facebook</a></li>
+            <li><a href="page2.html">Friends</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="left">
+            <div class="header">WELCOME TO FACEBOOK<br>
+                <p>
+                    📱 Social Networking Platform - Connects people worldwide through posts, photos, and videos. <br>
+                    💬 Messaging & Chat - Includes Messenger for real-time conversations and group chats.<br>
+                    📰 News Feed - Personalized stream of updates from friends, pages, and groups.<br>
+                    📸 Media Sharing - Upload and share photos, stories, and live videos easily.<br>
+                    👥 Groups & Communities - Join or create interest-based groups for discussions and events.<br>
+                    📆 Events - Create and manage events with RSVPS, reminders, and details.<br>
+                    📈 Marketplace & Ads - Buy/sell items locally and run targeted advertisements.<br>
+                    🔒 Privacy Controls - Customize who can see your posts and manage account security.<br>
+                    </p>
+            </div>
+        </div>
+        
+        <div id="sidebar">Marketplace
+            <!-- <div class="product-card">BAKED BEANS <br> $0.40 <br> Vegetable</div> -->
+        </div>
+    </div>
+    
+    <script>
+
+        const API_URL = "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json";
+
+        fetch(API_URL)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                return response.json();
+            })
+            .then((data) => {
+                displayProducts(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching product data.", error);
+            });
+
+
+        function displayProducts(products){
+
+            const productContainer = document.getElementById("sidebar");
+
+            products.forEach((product) => {
+
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                ${product.name.toUpperCase()} <br> $${product.price} <br> ${product.type.charAt(0).toUpperCase()+product.type.slice(1)}
+                `;
+                
+                productContainer.appendChild(productCard);
+
+            });
+
+        }
+
+
+    </script>
+
+</body>
+</html>

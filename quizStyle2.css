@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav{
+    background-color: rgb(200, 200, 200);
+    font-size: 14px;
+    height: 40px;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-between;
+    height: 100%;
+}
+
+
+nav a{
+    text-decoration:none;
+    color: black;
+    padding: 13px 40px;
+    font-family: 'Times New Roman', Times, serif;
+    height: 100%;
+}
+
+.header{
+    font-size: 50px;
+    width: 536px;
+    margin: 20px 70px;
+}
+
+#container{
+    margin: 0 85px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 1218px;
+}
+
+.product-card{
+    padding: 18px;
+    background-color: rgb(231, 231, 231);
+    margin: 10px 0;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+}

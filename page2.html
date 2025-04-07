@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quizStyle2.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="page1.html">Facebook</a></li>
+            <li><a href="page2.html">Friends</a></li>
+        </ul>
+    </nav>
+
+    <div class="header">WELCOME TO FRIENDS<br></div>
+
+    <div id="container"></div>
+
+    <script>
+
+        const API_URL = "https://jsonplaceholder.typicode.com/users";
+
+        fetch(API_URL)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                return response.json();
+            })
+            .then((data) => {
+                displayProducts(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching product data.", error);
+            });
+
+
+        function displayProducts(products){
+
+            const productContainer = document.getElementById("container");
+
+            products.forEach((product) => {
+
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                ${product.name} @${product.username} <br>
+                City: ${product.address.city}
+                Website: <a href="${product.website}">${product.website}</a><br>
+                ${product.company.name}<br>
+                ${product.company.catchPhrase}
+                `;
+                
+                productContainer.appendChild(productCard);
+
+            });
+
+        }
+
+
+    </script>
+
+</body>
+</html>
